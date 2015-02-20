@@ -17,11 +17,10 @@ class ViewController: UIViewController, ZSocialPullDelegate {
 ```
 <br>
 **To ZSocialPullView just create a UIView with your desired content and create a ZSocialPullView with a frame.**
-<br>
-You can add the like or share images you prefer.
-You **MUST** set the backgroundColorOriginal property for the ZSocialPullView as the same color of your superview.
-Remember to add the delegate
-**Most importantly, the .setUIView is the last function to call for this control**
+<br>- You can add the like or share images you prefer. (Image filled and Image with border only, png no background.)
+<br>- You **MUST** set the backgroundColorOriginal property for the ZSocialPullView as the same color of your superview.
+<br>- Remember to add the delegate
+<br>- **Most importantly, the .setUIView is the last function to call for this control**
 <br>
 
 ```swift
