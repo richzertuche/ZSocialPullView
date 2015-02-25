@@ -18,7 +18,6 @@ class ViewController: UIViewController, ZSocialPullDelegate {
         var hf = UIImage(named: "heart_f.png")
         var se = UIImage(named: "share_e.png")
         var sf = UIImage(named: "share_f.png")
-        
         self.view.backgroundColor = UIColor.blackColor()
         
         var v = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 375))

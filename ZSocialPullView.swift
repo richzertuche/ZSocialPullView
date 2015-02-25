@@ -33,6 +33,8 @@ class ZSocialPullView: UIView, UIScrollViewDelegate
     var backgroundColorOriginal: UIColor?
     
     private var originalView: UIView!
+    private var bounceVar:CGFloat = 0.0
+    private var bouncing:Bool = false
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -113,29 +115,28 @@ class ZSocialPullView: UIView, UIScrollViewDelegate
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         var n = scrollView.contentOffset.x / self.frame.width
-        
-        if n>0{
-            self.colorLikeView(n)
-            emptyLikeView.hidden = false
-            filledLikeView.hidden = false
-            emptyShareView.hidden = true
-            filledShareView.hidden = true
-            
-        }
-        else if n<0{
-            self.colorShareView(n)
-            emptyLikeView.hidden = true
-            filledLikeView.hidden = true
-            emptyShareView.hidden = false
-            filledShareView.hidden = false
+        if bouncing == false {
+            if n>0{
+                self.colorLikeView(n)
+                emptyLikeView.hidden = false
+                filledLikeView.hidden = false
+                emptyShareView.hidden = true
+                filledShareView.hidden = true
+                
+            }
+            else if n<0{
+                self.colorShareView(n)
+                emptyLikeView.hidden = true
+                filledLikeView.hidden = true
+                emptyShareView.hidden = false
+                filledShareView.hidden = false
+            }
         }
     }
     
     func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
-        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 2, initialSpringVelocity: 5, options: .CurveEaseOut, animations: {
-            self.scrollview.setContentOffset(CGPointMake(0.00266666666666667, 0), animated: true)
-            self.layoutIfNeeded()
-            }, completion:nil)
+        bouncing = true
+        
         if scrollview.contentOffset.x >= 75.0 {
             self.didLike()
         }
@@ -143,6 +144,70 @@ class ZSocialPullView: UIView, UIScrollViewDelegate
             self.didShare()
         }
         
+        if scrollview.contentOffset.x >= 0 {
+            self.filledShareView.hidden = true
+            self.emptyShareView.hidden = true
+        }
+        else if scrollview.contentOffset.x < 0 {
+            self.filledLikeView.hidden = true
+            self.emptyLikeView.hidden = true
+        }
+        
+        if scrollView.contentOffset.x >= 50 { bounceVar = 50 }
+        if scrollView.contentOffset.x < 50 && scrollView.contentOffset.x > -50 { bounceVar = scrollView.contentOffset.x }
+        if scrollView.contentOffset.x < -50 { bounceVar = -50 }
+
+        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 2, initialSpringVelocity: 5, options: .CurveEaseOut, animations: {
+            //self.scrollview.setContentOffset(CGPointMake(0.00266666666666667, 0), animated: true)
+            self.scrollview.setContentOffset(CGPointMake(0.00266666666666667-self.bounceVar, 0), animated: true)
+            }, completion:{
+                finished in
+                var timer = NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: Selector("bounceBack1"), userInfo: nil, repeats: false)
+        })
+    }
+    
+    func bounceBack1()
+    {
+        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 2, initialSpringVelocity: 5, options: .CurveEaseOut, animations: {
+            //self.scrollview.setContentOffset(CGPointMake(0.00266666666666667, 0), animated: true)
+            self.scrollview.setContentOffset(CGPointMake(0.00266666666666667+self.bounceVar/2, 0), animated: true)
+            self.layoutIfNeeded()
+            }, completion:{
+                finished in
+                self.filledLikeView.hidden = true
+                self.emptyLikeView.hidden = true
+                self.filledShareView.hidden = true
+                self.emptyShareView.hidden = true
+                var timer = NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: Selector("bounceBack2"), userInfo: nil, repeats: false)
+        })
+    }
+    
+    func bounceBack2()
+    {
+        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 2, initialSpringVelocity: 5, options: .CurveEaseOut, animations: {
+            //self.scrollview.setContentOffset(CGPointMake(0.00266666666666667, 0), animated: true)
+            self.scrollview.setContentOffset(CGPointMake(0.00266666666666667-self.bounceVar/4, 0), animated: true)
+            self.layoutIfNeeded()
+            }, completion:{
+                finished in
+                var timer = NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: Selector("bounceBack3"), userInfo: nil, repeats: false)
+        })
+    }
+    
+    func bounceBack3()
+    {
+        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 2, initialSpringVelocity: 5, options: .CurveEaseOut, animations: {
+            //self.scrollview.setContentOffset(CGPointMake(0.00266666666666667, 0), animated: true)
+            self.scrollview.setContentOffset(CGPointMake(0.00266666666666667, 0), animated: true)
+            self.layoutIfNeeded()
+            }, completion:{
+                finished in
+                self.filledLikeView.hidden = false
+                self.emptyLikeView.hidden = false
+                self.filledShareView.hidden = false
+                self.emptyShareView.hidden = false
+                self.bouncing = false
+        })
     }
     
     func colorLikeView(percent: CGFloat){
