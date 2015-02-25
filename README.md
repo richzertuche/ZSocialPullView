@@ -6,8 +6,7 @@
 
 <img src="https://m1.behance.net/rendition/modules/152914209/disp/06fa314c839f7fc2fa0df1b0d7f5d1de.gif"/>
 <p>So far:</p>
-[![ZMaterialButton](http://img.youtube.com/vi/ksMkNRxzudQ/0.jpg)](http://www.youtube.com/watch?v=ksMkNRxzudQ)
-<br><p>Missing: Bouncy animations when going back</p>
+[![ZMaterialButton](http://img.youtube.com/vi/Ctcn2bD71KA/0.jpg)](http://www.youtube.com/watch?v=Ctcn2bD71KA)
 <br>
 **You need to add the ZSocialPullDelegate to your Controller:**
 
