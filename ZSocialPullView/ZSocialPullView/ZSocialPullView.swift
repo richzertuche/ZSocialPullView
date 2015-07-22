@@ -67,7 +67,7 @@ class ZSocialPullView: UIView, UIScrollViewDelegate
         
         //Like Button Filled
         filledLikeView = UIView(frame: CGRect(x: view.frame.width-65+view.frame.origin.x, y: self.frame.height/2-25, width: 50, height:50))
-        var likeFilledImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: filledLikeView.frame.width, height: filledLikeView.frame.height))
+        let likeFilledImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: filledLikeView.frame.width, height: filledLikeView.frame.height))
         likeFilledImageView.image = likeFilledImage
         filledLikeView.addSubview(likeFilledImageView)
         self.addSubview(filledLikeView)
@@ -75,14 +75,14 @@ class ZSocialPullView: UIView, UIScrollViewDelegate
         //Like Button Empty
         emptyLikeView = UIView(frame: CGRect(x: view.frame.width-65+view.frame.origin.x, y: self.frame.height/2-25, width: 50, height:50))
         emptyLikeView.backgroundColor = backgroundColorOriginal
-        var likeEmptyImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: emptyLikeView.frame.width, height: emptyLikeView.frame.height))
+        let likeEmptyImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: emptyLikeView.frame.width, height: emptyLikeView.frame.height))
         likeEmptyImageView.image = likeEmptyImage
         emptyLikeView?.addSubview(likeEmptyImageView)
         self.addSubview(emptyLikeView!)
         
         //Share Button Filled
         filledShareView = UIView(frame: CGRect(x: view.frame.origin.x+15, y: self.frame.height/2-25, width: 50, height:50))
-        var shareFilledImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: filledShareView.frame.width, height: filledShareView.frame.height))
+        let shareFilledImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: filledShareView.frame.width, height: filledShareView.frame.height))
         shareFilledImageView.image = shareFilledImage
         filledShareView.addSubview(shareFilledImageView)
         self.addSubview(filledShareView)
@@ -90,7 +90,7 @@ class ZSocialPullView: UIView, UIScrollViewDelegate
         //Share Button Empty
         emptyShareView = UIView(frame: CGRect(x: view.frame.origin.x+15, y: self.frame.height/2-25, width: 50, height:50))
         emptyShareView.backgroundColor = backgroundColorOriginal
-        var shareEmptyImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: emptyShareView.frame.width, height: emptyShareView.frame.height))
+        let shareEmptyImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: emptyShareView.frame.width, height: emptyShareView.frame.height))
         shareEmptyImageView.image = shareEmptyImage
         emptyShareView?.addSubview(shareEmptyImageView)
         self.addSubview(emptyShareView!)
@@ -114,7 +114,7 @@ class ZSocialPullView: UIView, UIScrollViewDelegate
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        var n = scrollView.contentOffset.x / self.frame.width
+        let n = scrollView.contentOffset.x / self.frame.width
         if bouncing == false {
             if n>0{
                 self.colorLikeView(n)
@@ -211,7 +211,7 @@ class ZSocialPullView: UIView, UIScrollViewDelegate
     }
     
     func colorLikeView(percent: CGFloat){
-        var x = (percent*100)/0.29
+        let x = (percent*100)/0.29
         var y = (50-x)+20
         if  (y<0){
             y=0
@@ -220,8 +220,8 @@ class ZSocialPullView: UIView, UIScrollViewDelegate
     }
     
     func colorShareView(percent: CGFloat){
-        var abspercent = abs(percent)
-        var x = (abspercent*100)/0.29
+        let abspercent = abs(percent)
+        let x = (abspercent*100)/0.29
         var y = (50-x)+20
         if  (y<0){
             y=0

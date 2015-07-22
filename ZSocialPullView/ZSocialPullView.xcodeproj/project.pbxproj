@@ -177,6 +177,7 @@
 		F04106461A97DDA200F46B99 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Ricardo Zertuche";
 				TargetAttributes = {
@@ -433,6 +434,7 @@
 				F041066F1A97DDA200F46B99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F04106701A97DDA200F46B99 /* Build configuration list for PBXNativeTarget "ZSocialPullViewTests" */ = {
 			isa = XCConfigurationList;
@@ -441,6 +443,7 @@
 				F04106721A97DDA200F46B99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
